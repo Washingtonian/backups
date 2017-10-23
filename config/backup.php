@@ -49,7 +49,7 @@ return [
         /*
          * The database dump can be gzipped to decrease diskspace usage.
          */
-        'gzip_database_dump' => false,
+        'gzip_database_dump' => true,
 
         'destination' => [
 
@@ -77,12 +77,12 @@ return [
     'notifications' => [
 
         'notifications' => [
-            \Spatie\Backup\Notifications\Notifications\BackupHasFailed::class         => ['mail'],
-            \Spatie\Backup\Notifications\Notifications\UnhealthyBackupWasFound::class => ['mail'],
-            \Spatie\Backup\Notifications\Notifications\CleanupHasFailed::class        => ['mail'],
-            \Spatie\Backup\Notifications\Notifications\BackupWasSuccessful::class     => ['mail'],
-            \Spatie\Backup\Notifications\Notifications\HealthyBackupWasFound::class   => ['mail'],
-            \Spatie\Backup\Notifications\Notifications\CleanupWasSuccessful::class    => ['mail'],
+            \Spatie\Backup\Notifications\Notifications\BackupHasFailed::class         => ['mail', 'slack'],
+            \Spatie\Backup\Notifications\Notifications\UnhealthyBackupWasFound::class => ['mail', 'slack'],
+            \Spatie\Backup\Notifications\Notifications\CleanupHasFailed::class        => ['mail', 'slack'],
+            \Spatie\Backup\Notifications\Notifications\BackupWasSuccessful::class     => ['mail', 'slack'],
+            \Spatie\Backup\Notifications\Notifications\HealthyBackupWasFound::class   => ['mail', 'slack'],
+            \Spatie\Backup\Notifications\Notifications\CleanupWasSuccessful::class    => ['mail', 'slack'],
         ],
 
         /*
@@ -96,12 +96,12 @@ return [
         ],
 
         'slack' => [
-            'webhook_url' => 'https://hooks.slack.com/services/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',
+            'webhook_url' => 'https://hooks.slack.com/services/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',
 
             /*
              * If this is set to null the default channel of the webhook will be used.
              */
-            'channel' => null,
+            'channel' => '#tech-notifications',
         ],
     ],
 
@@ -113,7 +113,7 @@ return [
     'monitorBackups' => [
         [
             'name' => env('APP_NAME'),
-            'disks' => ['local'],
+            'disks' => ['local', 's3'],
             'newestBackupsShouldNotBeOlderThanDays' => 1,
             'storageUsedMayNotBeHigherThanMegabytes' => 10000,
         ],
