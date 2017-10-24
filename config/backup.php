@@ -118,14 +118,18 @@ return [
             'storageUsedMayNotBeHigherThanMegabytes' => 10000,
         ],
 
-        /*
-        [
-            'name' => 'name of the second app',
-            'disks' => ['local', 's3'],
+           [
+            'name' => 'http://contests.washingtonian.com',
+            'disks' => ['s3'],
             'newestBackupsShouldNotBeOlderThanDays' => 1,
-            'storageUsedMayNotBeHigherThanMegabytes' => 5000,
+            'storageUsedMayNotBeHigherThanMegabytes' => 20000,
         ],
-        */
+        [
+            'name' => 'https://tickets.washingtonian.com',
+            'disks' => ['s3'],
+            'newestBackupsShouldNotBeOlderThanDays' => 1,
+            'storageUsedMayNotBeHigherThanMegabytes' => 20000,
+        ],
     ],
 
     'cleanup' => [
